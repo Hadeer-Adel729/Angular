@@ -1,0 +1,57 @@
+<h2 class="text-center mt-4">Our Products</h2>
+<div class="alert alert-info text-center">
+  Total Products: {{ products.length }}
+</div>
+
+<!-- Filter Form -->
+<div class="card p-3 mb-3">
+  <form>
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <label>Category</label>
+        <select class="form-control" [(ngModel)]="selectedCategory" name="category">
+          <option>All</option>
+          <option>Machines</option>
+          <option>Mugs</option>
+          <option>Beans</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label>Product Title</label>
+        <input type="text" class="form-control" [(ngModel)]="titleSearch" name="title" placeholder="Search by title...">
+      </div>
+      <div class="col-md-4">
+        <label>Max Price ($)</label>
+        <input type="number" class="form-control" [(ngModel)]="maxPrice" name="price" placeholder="Enter max price">
+      </div>
+    </div>
+  </form>
+  <button class="btn btn-primary btn-block">Apply</button>
+</div>
+
+<!-- Display Current Filter Values -->
+<div class="card p-2 mb-3">
+  <strong>Current Filter Values</strong><br>
+  Category: {{ selectedCategory }} |
+  Title Search: {{ titleSearch || 'None' }} |
+  Max Price: {{ maxPrice || 'None' }}
+</div>
+
+<!-- Product List -->
+<h4>Product List</h4>
+<div class="row">
+  <div class="col-md-3 mb-3" *ngFor="let product of products">
+    <div class="card h-100 shadow-sm border-0">
+  <img [src]="product.image" class="card-img-top img-fluid" [alt]="product.title" style="height: 250px; object-fit: cover;">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">
+      <span class="badge bg-secondary">{{ product.category }}</span><br>
+      Price: ${{ product.price }}<br>
+      Stock: {{ product.stock }} units
+    </p>
+    <button class="btn btn-sm btn-primary w-100">Add to Cart</button>
+  </div>
+</div>
+  </div>
+</div>
