@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,14 +11,13 @@ import { ProductFilterPipe } from '../../pipes/product-filter.pipe';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+
 export class ProductsComponent implements OnInit {
   
-  // Variables to store our data
-  products: Product[] = []; // Array to hold all products
-  categories: Category[] = []; // Array to hold all categories
-  isLoading: boolean = true; // To show loading state
-  
-  // Filter form variables
+  products: Product[] = []; 
+  categories: Category[] = []; 
+  isLoading: boolean = true; 
+
   titleFilter: string = '';
   priceFilter: number | null = null;
   categoryFilter: string = '';
@@ -27,13 +25,11 @@ export class ProductsComponent implements OnInit {
   // Inject the ProductService
   constructor(private productService: ProductService) { }
 
-  // This runs when the component is initialized
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
   }
 
-  // Method to load products from the API
   loadProducts(): void {
     this.isLoading = true;
     
@@ -51,7 +47,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  // Method to load categories from the API
   loadCategories(): void {
     this.productService.getCategories().subscribe({
       next: (categories) => {
@@ -63,7 +58,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  // Method to reset all filters
   resetFilters(): void {
     this.titleFilter = '';
     this.priceFilter = null;
